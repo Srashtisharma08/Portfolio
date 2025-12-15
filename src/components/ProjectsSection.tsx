@@ -4,32 +4,68 @@ import { Button } from '@/components/ui/button';
 
 const projects = [
   {
-    number: '01',
     title: 'DreamQuill',
-    subtitle: 'AI Story Generation Platform',
-    description: 'An intelligent storytelling platform that brings narratives to life through advanced AI. Features GPT-2 & LLaMA-3 fine-tuning for text generation, BLIP-2 + Stable Diffusion for comic creation, and a Flask API for seamless text-to-image transformation.',
-    tags: ['GPT-2', 'LLaMA-3', 'Stable Diffusion', 'Flask', 'BLIP-2'],
+    subtitle: 'AI-Powered Creative Writing Assistant',
+    description: 'An intelligent writing companion that leverages advanced AI to help users craft compelling stories, articles, and creative content with real-time suggestions and style enhancement.',
+    technologies: ['Python', 'TensorFlow', 'React', 'Streamlit', 'OpenAI API'],
+    keyContributions: [
+      'Developed the core AI writing engine using transformer-based models',
+      'Implemented real-time text generation with context-aware suggestions',
+      'Built an intuitive UI for seamless writing experience',
+      'Integrated multiple writing styles and tone adjustments'
+    ],
+    learningOutcomes: [
+      'Learned advanced NLP techniques and transformer architectures',
+      'Gained experience in building production-ready AI applications',
+      'Improved understanding of user-centric AI design'
+    ],
     icon: Sparkles,
-    gradient: 'from-primary to-secondary',
+    githubUrl: '#',
+    liveUrl: '#',
+    gradient: 'from-primary to-secondary'
   },
   {
-    number: '02',
     title: 'MLens',
     subtitle: 'AR-based ML Learning System',
-    description: 'An immersive augmented reality experience for learning machine learning concepts. Built with WebXR and Three.js for AR visualization, powered by TensorFlow backend for real-time ML algorithm visualization and interactive demonstrations.',
-    tags: ['WebXR', 'Three.js', 'TensorFlow', 'AR', 'Real-time'],
+    description: 'An immersive augmented reality experience for learning machine learning concepts. Built with WebXR and Three.js for AR visualization, powered by TensorFlow backend for real-time ML algorithm visualization.',
+    technologies: ['WebXR', 'Three.js', 'TensorFlow.js', 'React', 'WebGL'],
+    keyContributions: [
+      'Designed 3D visualization components for complex neural networks',
+      'Integrated TensorFlow.js for in-browser model inference',
+      'Optimized rendering pipeline for stable 60fps performance',
+      'Created interactive tutorials for ML concepts in AR'
+    ],
+    learningOutcomes: [
+      'Mastered WebXR standards and 3D web development',
+      'Deepened knowledge of client-side machine learning limitations and optimizations',
+      'Enhanced UX design skills for spatial computing interfaces'
+    ],
     icon: Glasses,
-    gradient: 'from-secondary to-neon-pink',
+    githubUrl: '#',
+    liveUrl: '#',
+    gradient: 'from-secondary to-neon-pink'
   },
   {
-    number: '03',
     title: 'Quantum-AI Verse',
     subtitle: 'Intelligent Multi-Agent System',
-    description: 'A research-driven intelligent system featuring multi-agent architecture for complex problem solving. Combines ML-centric design principles with cutting-edge research methodologies for professional-grade AI solutions.',
-    tags: ['Multi-Agent', 'ML Design', 'Research', 'AI Systems'],
+    description: 'A research-driven intelligent system featuring multi-agent architecture for complex problem solving. Combines ML-centric design principles with cutting-edge research methodologies.',
+    technologies: ['Python', 'PyTorch', 'Ray', 'FastAPI', 'React'],
+    keyContributions: [
+      'Architected the multi-agent communication protocol',
+      'Implemented reinforcement learning algorithms for agent coordination',
+      'Designed the dashboard for real-time system monitoring',
+      'Concealed complex backend logic behind a clean API'
+    ],
+    learningOutcomes: [
+      'Advanced understanding of distributed AI systems',
+      'Experience in scalable backend synthesis and microservices',
+      'Practical application of multi-agent reinforcement learning'
+    ],
     icon: Cpu,
-    gradient: 'from-neon-pink to-primary',
-  },
+    githubUrl: '#',
+    liveUrl: '#',
+    gradient: 'from-neon-pink to-primary'
+  }
 ];
 
 const ProjectsSection = () => {
@@ -41,6 +77,7 @@ const ProjectsSection = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-fade-in-up');
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -56,9 +93,9 @@ const ProjectsSection = () => {
   return (
     <section ref={sectionRef} id="projects" className="relative py-24 md:py-32">
       {/* Background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-0 w-1/3 h-96 bg-primary/5 blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-1/3 h-96 bg-secondary/5 blur-3xl" />
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/2 left-0 w-1/3 h-96 bg-primary/5 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-1/3 h-96 bg-secondary/5 blur-3xl pointer-events-none" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -67,106 +104,106 @@ const ProjectsSection = () => {
           <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Innovative solutions combining AI, machine learning, and creative technology
-          </p>
         </div>
 
-        {/* Projects */}
-        <div className="space-y-12 md:space-y-20">
+        {/* Projects Cards */}
+        <div className="space-y-12">
           {projects.map((project, index) => (
             <div
               key={project.title}
-              className="project-card opacity-0 relative"
+              className="project-card opacity-0 transform translate-y-8 transition-all duration-700"
+              style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <div className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 md:gap-12 items-center`}>
-                {/* Number */}
-                <div className="hidden md:block absolute -left-8 top-0">
-                  <span className={`font-heading text-8xl font-bold bg-gradient-to-b ${project.gradient} bg-clip-text text-transparent opacity-20`}>
-                    {project.number}
-                  </span>
-                </div>
+              <div className="group relative rounded-2xl bg-card/40 backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-all duration-300 overflow-hidden">
+                {/* Glow Effect on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                {/* Content */}
-                <div className="flex-1 space-y-6">
-                  <div className="flex items-center gap-4">
-                    <span className={`md:hidden font-heading text-4xl font-bold bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent`}>
-                      {project.number}
-                    </span>
-                    <div className={`p-3 rounded-xl bg-gradient-to-r ${project.gradient}`}>
-                      <project.icon className="h-6 w-6 text-background" />
+                <div className="relative p-8 md:p-10">
+                  {/* Header: Icon + Title + Actions */}
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
+                    <div className="flex items-start gap-5">
+                      <div className={`p-4 rounded-xl bg-gradient-to-br ${project.gradient} bg-opacity-10 flex-shrink-0 mt-1 shadow-lg shadow-primary/10`}>
+                        <project.icon className="h-8 w-8 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-heading text-3xl font-bold text-foreground mb-2">
+                          {project.title}
+                        </h3>
+                        <p className="text-primary text-lg font-medium">
+                          {project.subtitle}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3">
+                      <Button variant="outline" size="icon" className="rounded-full w-10 h-10 border-primary/20 text-muted-foreground hover:text-white hover:bg-primary/20 hover:border-primary/50 transition-all">
+                        <Github className="h-5 w-5" />
+                      </Button>
+                      <Button variant="outline" size="icon" className="rounded-full w-10 h-10 border-primary/20 text-muted-foreground hover:text-white hover:bg-primary/20 hover:border-primary/50 transition-all">
+                        <ExternalLink className="h-5 w-5" />
+                      </Button>
                     </div>
                   </div>
 
-                  <div>
-                    <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-2">
-                      {project.title}
-                    </h3>
-                    <p className="text-primary text-lg font-medium">
-                      {project.subtitle}
+                  {/* Description */}
+                  <div className="mb-8">
+                    <p className="text-muted-foreground leading-relaxed text-lg max-w-4xl">
+                      {project.description}
                     </p>
                   </div>
 
-                  <p className="text-muted-foreground leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex gap-4">
-                    <Button variant="outline" size="sm" className="border-primary/50 text-primary hover:bg-primary/10">
-                      <Github className="mr-2 h-4 w-4" />
-                      View Code
-                    </Button>
-                    <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Live Demo
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Visual placeholder */}
-                <div className="flex-1 w-full">
-                  <div className="relative group">
-                    <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient} rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity`} />
-                    <div className="relative aspect-video rounded-2xl bg-card border border-border/50 overflow-hidden glass-hover">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <project.icon className="h-16 w-16 text-muted-foreground/30" />
-                      </div>
-                      {/* Animated code lines */}
-                      <div className="absolute inset-4 opacity-20">
-                        {[...Array(6)].map((_, i) => (
-                          <div
-                            key={i}
-                            className="h-2 rounded mb-2"
-                            style={{
-                              width: `${Math.random() * 40 + 40}%`,
-                              background: `linear-gradient(90deg, hsl(var(--primary) / 0.5), transparent)`,
-                              animationDelay: `${i * 0.2}s`,
-                            }}
-                          />
-                        ))}
-                      </div>
+                  {/* Technologies */}
+                  <div className="mb-10">
+                    <h4 className="text-sm uppercase tracking-wider font-semibold text-foreground/80 mb-4">
+                      Technologies Used
+                    </h4>
+                    <div className="flex flex-wrap gap-3">
+                      {project.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-4 py-1.5 text-sm font-medium rounded-full bg-primary/10 text-primary-glow border border-primary/20 hover:bg-primary/20 transition-colors cursor-default"
+                        >
+                          {tech}
+                        </span>
+                      ))}
                     </div>
                   </div>
+
+                  {/* Lists: Grid Layout */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    {/* Contributions */}
+                    <div>
+                      <h4 className="font-heading text-lg font-bold text-foreground mb-4 border-l-4 border-primary pl-3">
+                        Key Contributions
+                      </h4>
+                      <ul className="space-y-3">
+                        {project.keyContributions.map((item, i) => (
+                          <li key={i} className="flex items-start gap-3 text-muted-foreground">
+                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                            <span className="leading-relaxed">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Outcomes */}
+                    <div>
+                      <h4 className="font-heading text-lg font-bold text-foreground mb-4 border-l-4 border-secondary pl-3">
+                        Learning Outcomes
+                      </h4>
+                      <ul className="space-y-3">
+                        {project.learningOutcomes.map((item, i) => (
+                          <li key={i} className="flex items-start gap-3 text-muted-foreground">
+                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-secondary flex-shrink-0" />
+                            <span className="leading-relaxed">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
                 </div>
               </div>
-
-              {/* Separator */}
-              {index < projects.length - 1 && (
-                <div className="mt-12 md:mt-20 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-              )}
             </div>
           ))}
         </div>

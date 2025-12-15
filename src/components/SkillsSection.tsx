@@ -1,24 +1,50 @@
 import { useEffect, useRef } from 'react';
-import { 
-  Code, 
-  Brain, 
-  Wrench, 
-  Sparkles,
-  FileCode,
-  Coffee,
-  Terminal,
-  Globe
-} from 'lucide-react';
 
-const skills = [
-  { name: 'Programming', icon: Code, description: 'Clean & efficient code' },
-  { name: 'ML & AI', icon: Brain, description: 'Intelligent systems' },
-  { name: 'Tools', icon: Wrench, description: 'Dev environment mastery' },
-  { name: 'AI Tools', icon: Sparkles, description: 'GPT, Claude & more' },
-  { name: 'Python', icon: Terminal, description: 'Primary language' },
-  { name: 'Java', icon: Coffee, description: 'Enterprise solutions' },
-  { name: 'C/C++', icon: FileCode, description: 'Low-level programming' },
-  { name: 'HTML/CSS', icon: Globe, description: 'Web fundamentals' },
+const skillCategories = [
+  {
+    title: 'Languages',
+    skills: [
+      'Python',
+      'C / C++',
+      'Java',
+      'SQL',
+      'HTML / CSS'
+    ]
+  },
+  {
+    title: 'Frameworks & Libraries',
+    skills: [
+      'TensorFlow',
+      'React',
+      'Streamlit',
+      'NumPy'
+    ]
+  },
+  {
+    title: 'Tools & Platforms',
+    skills: [
+      'Git & GitHub',
+      'Linux',
+      'Google Cloud Platform (GCP)',
+      'Vercel'
+    ]
+  }
+];
+
+const additionalCompetencies = [
+  'SDLC',
+  'Agile Methodology',
+  'OOP Concepts',
+  'Operating Systems',
+  'Database Management',
+  'Computer Networks',
+  'Data Structures',
+  'Algorithm Design',
+  'System Design',
+  'Problem Solving',
+  'Critical Thinking',
+  'Team Leadership',
+  'Public Speaking'
 ];
 
 const SkillsSection = () => {
@@ -29,74 +55,95 @@ const SkillsSection = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in-up');
+            entry.target.classList.remove('opacity-0');
+
+            // Stagger scale-in for individual cards
             const cards = entry.target.querySelectorAll('.skill-card');
             cards.forEach((card, index) => {
               setTimeout(() => {
                 card.classList.add('animate-scale-in');
+                card.classList.remove('opacity-0');
               }, index * 100);
             });
+
+            // Stagger fade-in for pills
+            const pills = entry.target.querySelectorAll('.competency-pill');
+            pills.forEach((pill, index) => {
+              setTimeout(() => {
+                pill.classList.add('animate-scale-in');
+                pill.classList.remove('opacity-0');
+              }, index * 50 + 500); // Start after cards
+            });
+
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    const elements = sectionRef.current?.querySelectorAll('.reveal');
+    elements?.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);
 
   return (
     <section ref={sectionRef} id="skills" className="relative py-24 md:py-32">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+      {/* Background decoration */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl max-h-4xl bg-primary/5 rounded-full blur-3xl -z-10" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 reveal opacity-0">
           <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">Skills</span> & Expertise
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A diverse toolkit spanning programming languages, AI/ML technologies, and modern development tools
+            A comprehensive toolkit spanning programming languages, frameworks, and modern development tools
           </p>
         </div>
 
-        {/* Skills Grid - Hexagonal Layout */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
-          {skills.map((skill, index) => (
+        {/* Skills Grid - 3 Column Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto reveal mb-20">
+          {skillCategories.map((category) => (
             <div
-              key={skill.name}
-              className="skill-card opacity-0 group relative"
+              key={category.title}
+              className="skill-card opacity-0 bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-primary/50 transition-colors duration-300"
             >
-              <div className="aspect-square relative">
-                {/* Hexagon background */}
-                <div className="hexagon absolute inset-0 bg-card/50 border border-border/50 transition-all duration-300 group-hover:bg-card group-hover:border-primary/50" />
-                
-                {/* Glow effect on hover */}
-                <div className="hexagon absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 neon-glow" />
-                
-                {/* Content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center z-10">
-                  <div className="p-3 rounded-xl bg-primary/10 mb-3 group-hover:bg-primary/20 transition-colors">
-                    <skill.icon className="h-6 w-6 md:h-8 md:w-8 text-primary group-hover:text-primary-glow transition-colors" />
-                  </div>
-                  <h3 className="font-heading text-sm md:text-base font-semibold text-foreground mb-1">
-                    {skill.name}
-                  </h3>
-                  <p className="text-xs text-muted-foreground hidden md:block">
-                    {skill.description}
-                  </p>
-                </div>
-              </div>
+              <h3 className="font-heading text-xl font-bold mb-6 text-foreground border-b border-border/50 pb-4">
+                {category.title}
+              </h3>
+
+              <ul className="space-y-4">
+                {category.skills.map((skill) => (
+                  <li key={skill} className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+                    <span className="w-2 h-2 rounded-full bg-primary/70 shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
+                    <span className="text-base">{skill}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
 
-        {/* Decorative line */}
-        <div className="mt-16 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+        {/* Additional Competencies - Pill Layout */}
+        <div className="max-w-4xl mx-auto reveal opacity-0">
+          <h3 className="text-center font-heading text-xl md:text-2xl font-bold mb-8 text-foreground">
+            Additional Competencies
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+            {additionalCompetencies.map((skill) => (
+              <div
+                key={skill}
+                className="competency-pill opacity-0 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary-foreground text-sm md:text-base font-medium hover:bg-secondary/20 hover:border-secondary/40 transition-all duration-300 cursor-default"
+              >
+                {skill}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

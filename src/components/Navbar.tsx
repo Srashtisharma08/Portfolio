@@ -3,8 +3,11 @@ import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
+  { name: 'Education', href: '#education' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Certifications', href: '#certifications' },
   { name: 'Journey', href: '#journey' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -44,14 +47,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass py-3' : 'bg-transparent py-5'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-3' : 'bg-transparent py-5'
+        }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a 
-          href="#home" 
+        <a
+          href="#home"
           className="font-heading text-xl font-bold gradient-text"
           onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}
         >
@@ -65,11 +67,10 @@ const Navbar = () => {
               key={link.name}
               href={link.href}
               onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-              className={`relative font-medium text-sm tracking-wide transition-colors duration-300 ${
-                activeSection === link.href.substring(1)
-                  ? 'text-primary neon-text'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
+              className={`relative font-medium text-sm tracking-wide transition-colors duration-300 ${activeSection === link.href.substring(1)
+                ? 'text-primary neon-text'
+                : 'text-muted-foreground hover:text-foreground'
+                }`}
             >
               {link.name}
               {activeSection === link.href.substring(1) && (
@@ -97,11 +98,10 @@ const Navbar = () => {
               key={link.name}
               href={link.href}
               onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-              className={`block py-3 px-4 rounded-lg transition-colors ${
-                activeSection === link.href.substring(1)
-                  ? 'text-primary bg-primary/10'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-              }`}
+              className={`block py-3 px-4 rounded-lg transition-colors ${activeSection === link.href.substring(1)
+                ? 'text-primary bg-primary/10'
+                : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                }`}
             >
               {link.name}
             </a>
