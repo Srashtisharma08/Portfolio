@@ -38,7 +38,7 @@ const HeroSection = () => {
         {/* Gradient orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl float" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/20 rounded-full blur-3xl float-delayed" />
-        
+
         {/* Floating icons */}
         <div className="absolute top-1/3 left-[15%] float opacity-40">
           <Code2 size={32} className="text-primary" />
@@ -71,13 +71,13 @@ const HeroSection = () => {
         </h1>
 
         {/* Headline */}
-        <p className="reveal opacity-0 delay-300 text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 max-w-3xl mx-auto">
+        <p className="reveal opacity-0 delay-300 text-sm md:text-xl lg:text-2xl text-muted-foreground mb-6 max-w-full mx-auto whitespace-nowrap">
           <span className="text-primary">Future Innovator</span> | Building Meaningful Tech |{' '}
           <span className="text-secondary">Developer</span> | Problem Solver
         </p>
 
         {/* Subtext */}
-        <p className="reveal opacity-0 delay-400 text-base md:text-lg text-muted-foreground/80 mb-10 max-w-xl mx-auto">
+        <p className="reveal opacity-0 delay-400 text-base md:text-lg text-muted-foreground/80 mb-10 max-w-full mx-auto whitespace-nowrap">
           Crafting intelligent solutions through code, AI, and creative innovation
         </p>
 
