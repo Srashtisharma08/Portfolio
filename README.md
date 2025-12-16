@@ -1,73 +1,67 @@
-# Welcome to your Lovable project
+# Srashti Sharma — Personal Portfolio
 
-## Project info
+A modern, responsive portfolio built with React + Tailwind + smooth scroll animations, showcasing projects, skills, and experience.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🚀 Tech Stack
 
-## How can I edit this code?
+React
 
-There are several ways of editing your application.
+Vite
 
-**Use Lovable**
+Tailwind CSS
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Framer Motion
 
-Changes made via Lovable will be committed automatically to this repo.
+Radix UI
 
-**Use your preferred IDE**
+TypeScript
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 💼 Features
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Minimal white + dark modern theme
 
-Follow these steps:
+Smooth scroll transitions
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Zoho-style glowing timeline section
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Hexagonal skills section
 
-# Step 3: Install the necessary dependencies.
-npm i
+Project pages with detailed breakdown
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Fully responsive on all devices
 
-**Edit a file directly in GitHub**
+## 📂 Projects
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+DreamQuill
 
-**Use GitHub Codespaces**
+MLens
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Quantum-AI Verse
 
-## What technologies are used for this project?
+## 💼 Sections Included
 
-This project is built with:
+Home Page
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Clean hero section with minimal design and intro.
 
-## How can I deploy this project?
+Skills Section
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Interactive hexagonal grid with hover animations.
 
-## Can I connect a custom domain to my Lovable project?
+Hackathon/Experience Timeline
 
-Yes, you can!
+Dynamic and glowing timeline inspired by Zoho Hackathon 2025.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Projects Section
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Detailed view of major projects:
+
+DreamQuill — AI content generation platform
+
+MLens — AR-based ML visualization project
+
+Quantum-AI Verse — Hybrid AI + Quantum learning environment
+
+Contact Section
+
+Professional and simple contact call-to-action.
