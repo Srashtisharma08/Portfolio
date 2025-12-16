@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { User, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 const AboutSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
@@ -41,13 +41,12 @@ const AboutSection = () => {
                     <div className="reveal opacity-0 delay-100 flex justify-center md:justify-end">
                         <div className="relative w-64 h-64 md:w-80 md:h-80 group">
                             <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-primary rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-500 animate-pulse-slow" />
-                            <div className="relative w-full h-full bg-card border border-border rounded-2xl overflow-hidden flex items-center justify-center">
-                                {/* Placeholder Content */}
-                                <div className="text-center p-6">
-                                    <User className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                                    <p className="text-muted-foreground">Add your photo here</p>
-                                    <p className="text-xs text-muted-foreground/50 mt-2">(Replace with actual image)</p>
-                                </div>
+                            <div className="relative w-full h-full bg-card border border-border rounded-2xl overflow-hidden">
+                                <img
+                                    src="/profile-photo.jpeg"
+                                    alt="Srashti Sharma"
+                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                />
                             </div>
                             {/* Decorative elements */}
                             <div className="absolute -top-4 -right-4 w-12 h-12 border-t-2 border-r-2 border-primary rounded-tr-lg" />

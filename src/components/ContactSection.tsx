@@ -1,9 +1,31 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Mail, Github, Download, Send, MapPin, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent('Portfolio Contact Form Submission');
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    window.location.href = `mailto:sharmasrashti09@gmail.com?subject=${subject}&body=${body}`;
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -75,20 +97,22 @@ const ContactSection = () => {
             </a>
 
             {/* Resume Download */}
-            <Button
-              variant="neon"
-              size="lg"
-              className="w-full"
-              onClick={() => window.open('#', '_blank')}
-            >
-              <Download className="mr-2 h-5 w-5" />
-              Download Resume
-            </Button>
+            {/* Resume Download */}
+            <a href="/resume.pdf" download="Srashti_Sharma_Resume.pdf" className="w-full">
+              <Button
+                variant="neon"
+                size="lg"
+                className="w-full"
+              >
+                <Download className="mr-2 h-5 w-5" />
+                Download Resume
+              </Button>
+            </a>
           </div>
 
           {/* Contact Form */}
           <div className="reveal opacity-0 delay-300">
-            <form className="space-y-4 p-6 glass rounded-2xl">
+            <form className="space-y-4 p-6 glass rounded-2xl" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-2">
                   Name
@@ -96,6 +120,10 @@ const ContactSection = () => {
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 rounded-lg bg-input border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-foreground"
                   placeholder="Your name"
                 />
@@ -108,6 +136,10 @@ const ContactSection = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 rounded-lg bg-input border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-foreground"
                   placeholder="your@email.com"
                 />
@@ -119,13 +151,17 @@ const ContactSection = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   rows={4}
                   className="w-full px-4 py-3 rounded-lg bg-input border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none text-foreground"
                   placeholder="Your message..."
                 />
               </div>
 
-              <Button variant="neon" size="lg" className="w-full">
+              <Button type="submit" variant="neon" size="lg" className="w-full">
                 <Send className="mr-2 h-5 w-5" />
                 Send Message
               </Button>
