@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { GraduationCap, Calendar, MapPin, Award } from 'lucide-react';
 
-const educationData = [
+const educationData = [ 
     {
         type: 'university',
         degree: 'Bachelor of Technology (B.Tech) — Computer Science Engineering',
