@@ -16,7 +16,7 @@ const HeroSection = () => {
       },
       { threshold: 0.1 }
     );
-
+ 
     const elements = sectionRef.current?.querySelectorAll('.reveal');
     elements?.forEach((el) => observer.observe(el));
 
