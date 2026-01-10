@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Award, CheckCircle, ExternalLink } from 'lucide-react';
 
