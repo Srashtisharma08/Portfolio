@@ -1,20 +1,12 @@
-# Srashti Sharma — Personal Portfolio
+# Srashti Sharma — Personal Portfolio 
+
+Access here: https://portfolio-weld-one-73.vercel.app/
 
 A modern, responsive portfolio built with React + Tailwind + smooth scroll animations, showcasing projects, skills, and experience.
 
 ## 🚀 Tech Stack
 
-React
-
-Vite
-
-Tailwind CSS
-
-Framer Motion
-
-Radix UI
-
-TypeScript
+React, Vite, Tailwind CSS, Framer Motion, Radix UI, TypeScript
 
 ## 💼 Features
 
