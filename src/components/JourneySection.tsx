@@ -89,6 +89,7 @@ const JourneySection = () => {
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
+          <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-3">Milestones</p>
           <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">
             My <span className="gradient-text">Journey</span>
           </h2>

@@ -8,8 +8,8 @@ const educationData = [
         degree: 'Bachelor of Technology (B.Tech) — Computer Science Engineering',
         institution: 'RGPV University',
         location: 'Bhopal, Madhya Pradesh',
-        duration: '2022 – May 2026',
-        score: 'CGPA: 6.89 / 10',
+        duration: '2022 – June 2026',
+        score: 'CGPA: 7.89 / 10',
         highlights: [
             'Core CS fundamentals & advanced topics',
             'AI/ML specialization courses',
@@ -85,6 +85,7 @@ const EducationSection = () => {
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16 reveal opacity-0">
+                    <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-3">Academic Background</p>
                     <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">
                         <span className="gradient-text">Education</span> Journey
                     </h2>

@@ -3,32 +3,25 @@ import { useEffect, useRef } from 'react';
 const skillCategories = [
   {
     title: 'Languages',
-    skills: [
-      'Python',
-      'C / C++',
-      'Java',
-      'SQL',
-      'HTML / CSS'
-    ]
+    emoji: '💻',
+    color: 'from-violet-500/20 to-violet-500/5 border-violet-500/30',
+    badge: 'text-violet-400 bg-violet-500/10 border-violet-500/20',
+    skills: ['Python', 'C / C++', 'Java', 'SQL', 'HTML / CSS'],
   },
   {
     title: 'Frameworks & Libraries',
-    skills: [
-      'TensorFlow',
-      'React',
-      'Streamlit',
-      'NumPy'
-    ]
+    emoji: '⚙️',
+    color: 'from-cyan-500/20 to-cyan-500/5 border-cyan-500/30',
+    badge: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20',
+    skills: ['TensorFlow', 'React', 'Streamlit', 'NumPy'],
   },
   {
     title: 'Tools & Platforms',
-    skills: [
-      'Git & GitHub',
-      'Linux',
-      'Google Cloud Platform (GCP)',
-      'Vercel'
-    ]
-  }
+    emoji: '🛠️',
+    color: 'from-fuchsia-500/20 to-fuchsia-500/5 border-fuchsia-500/30',
+    badge: 'text-fuchsia-400 bg-fuchsia-500/10 border-fuchsia-500/20',
+    skills: ['Git & GitHub', 'Linux', 'Google Cloud Platform', 'Vercel'],
+  },
 ];
 
 const additionalCompetencies = [
@@ -44,7 +37,7 @@ const additionalCompetencies = [
   'Problem Solving',
   'Critical Thinking',
   'Team Leadership',
-  'Public Speaking'
+  'Public Speaking',
 ];
 
 const SkillsSection = () => {
@@ -58,22 +51,20 @@ const SkillsSection = () => {
             entry.target.classList.add('animate-fade-in-up');
             entry.target.classList.remove('opacity-0');
 
-            // Stagger scale-in for individual cards
             const cards = entry.target.querySelectorAll('.skill-card');
             cards.forEach((card, index) => {
               setTimeout(() => {
                 card.classList.add('animate-scale-in');
                 card.classList.remove('opacity-0');
-              }, index * 100);
+              }, index * 120);
             });
 
-            // Stagger fade-in for pills
             const pills = entry.target.querySelectorAll('.competency-pill');
             pills.forEach((pill, index) => {
               setTimeout(() => {
                 pill.classList.add('animate-scale-in');
                 pill.classList.remove('opacity-0');
-              }, index * 50 + 500); // Start after cards
+              }, index * 50 + 500);
             });
 
             observer.unobserve(entry.target);
@@ -97,30 +88,37 @@ const SkillsSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 reveal opacity-0">
+          <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-3">What I Know</p>
           <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">Skills</span> & Expertise
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive toolkit spanning programming languages, frameworks, and modern development tools
+            A comprehensive toolkit spanning programming languages, frameworks, and modern development platforms
           </p>
         </div>
 
-        {/* Skills Grid - 3 Column Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto reveal mb-20">
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto reveal mb-20">
           {skillCategories.map((category) => (
             <div
               key={category.title}
-              className="skill-card opacity-0 bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-primary/50 transition-colors duration-300"
+              className={`skill-card opacity-0 relative group rounded-2xl bg-gradient-to-br ${category.color} border backdrop-blur-sm p-8 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300`}
             >
-              <h3 className="font-heading text-xl font-bold mb-6 text-foreground border-b border-border/50 pb-4">
-                {category.title}
-              </h3>
+              {/* Header */}
+              <div className="flex items-center gap-3 mb-6 pb-5 border-b border-white/5">
+                <span className="text-2xl">{category.emoji}</span>
+                <h3 className="font-heading text-lg font-bold text-foreground">
+                  {category.title}
+                </h3>
+              </div>
 
-              <ul className="space-y-4">
+              {/* Skills list */}
+              <ul className="space-y-3">
                 {category.skills.map((skill) => (
-                  <li key={skill} className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
-                    <span className="w-2 h-2 rounded-full bg-primary/70 shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
-                    <span className="text-base">{skill}</span>
+                  <li key={skill} className="flex items-center gap-3">
+                    <span className={`tech-pill ${category.badge} border`}>
+                      {skill}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -128,7 +126,7 @@ const SkillsSection = () => {
           ))}
         </div>
 
-        {/* Additional Competencies - Pill Layout */}
+        {/* Additional Competencies */}
         <div className="max-w-4xl mx-auto reveal opacity-0">
           <h3 className="text-center font-heading text-xl md:text-2xl font-bold mb-8 text-foreground">
             Additional Competencies
@@ -137,7 +135,7 @@ const SkillsSection = () => {
             {additionalCompetencies.map((skill) => (
               <div
                 key={skill}
-                className="competency-pill opacity-0 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary-foreground text-sm md:text-base font-medium hover:bg-secondary/20 hover:border-secondary/40 transition-all duration-300 cursor-default"
+                className="competency-pill opacity-0 px-4 py-2 rounded-full bg-card/60 border border-border/60 text-muted-foreground text-sm font-medium hover:bg-primary/10 hover:border-primary/40 hover:text-primary transition-all duration-300 cursor-default"
               >
                 {skill}
               </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Linkedin } from 'lucide-react';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -21,7 +21,6 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      // Determine active section
       const sections = navLinks.map(link => link.href.substring(1));
       for (const section of sections.reverse()) {
         const element = document.getElementById(section);
@@ -47,37 +46,59 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-3' : 'bg-transparent py-5'
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'glass py-3 shadow-lg shadow-primary/5' : 'bg-transparent py-5'
+      }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <a
           href="#home"
-          className="font-heading text-xl font-bold gradient-text"
+          className="font-heading text-xl font-bold gradient-text tracking-wide"
           onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}
         >
-          SS
+          Srashti<span className="text-foreground/40">.</span>
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-              className={`relative font-medium text-sm tracking-wide transition-colors duration-300 ${activeSection === link.href.substring(1)
-                ? 'text-primary neon-text'
-                : 'text-muted-foreground hover:text-foreground'
-                }`}
+              className={`relative font-medium text-sm tracking-wide transition-colors duration-300 ${
+                activeSection === link.href.substring(1)
+                  ? 'text-primary'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
             >
               {link.name}
               {activeSection === link.href.substring(1) && (
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary neon-glow rounded-full" />
+                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full" />
               )}
             </a>
           ))}
+        </div>
+
+        {/* Right actions */}
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="https://www.linkedin.com/in/srashti-sharma-2388833a1/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
+            className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200"
+          >
+            <Linkedin size={18} />
+          </a>
+          <a
+            href="#contact"
+            onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}
+            className="px-4 py-2 text-sm font-semibold rounded-lg bg-primary/15 border border-primary/30 text-primary hover:bg-primary/25 hover:border-primary/60 transition-all duration-200"
+          >
+            Hire Me
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -92,20 +113,31 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden glass mt-2 mx-4 rounded-lg p-4 animate-fade-in">
+        <div className="md:hidden glass mt-2 mx-4 rounded-xl p-4 animate-fade-in">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-              className={`block py-3 px-4 rounded-lg transition-colors ${activeSection === link.href.substring(1)
-                ? 'text-primary bg-primary/10'
-                : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                }`}
+              className={`block py-3 px-4 rounded-lg transition-colors ${
+                activeSection === link.href.substring(1)
+                  ? 'text-primary bg-primary/10'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+              }`}
             >
               {link.name}
             </a>
           ))}
+          <div className="mt-3 pt-3 border-t border-border/50 flex items-center gap-3">
+            <a
+              href="https://www.linkedin.com/in/srashti-sharma-2388833a1/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+            >
+              <Linkedin size={16} /> LinkedIn
+            </a>
+          </div>
         </div>
       )}
     </nav>
