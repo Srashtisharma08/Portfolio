@@ -10,7 +10,7 @@ React, Vite, Tailwind CSS, Framer Motion, Radix UI, TypeScript
 
 ## 💼 Features
 
-Minimal white + dark modern theme
+Minimal white + dark modern theme 
 
 Smooth scroll transitions
 
