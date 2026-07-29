@@ -8,8 +8,8 @@ const certifications = [
     issuerLogo: '📘',
     description: 'Comprehensive course covering regression, classification, clustering, and recommender systems using Python and Scikit-learn.',
     icon: Award,
-    color: 'from-blue-500 to-cyan-400',
-    badgeColor: 'bg-blue-500/10 border-blue-500/20 text-blue-400',
+    color: 'from-blue-500 to-indigo-600',
+    badgeColor: 'bg-blue-50 border-blue-100 text-blue-700',
   },
   {
     title: 'Generative AI',
@@ -17,8 +17,8 @@ const certifications = [
     issuerLogo: '🔵',
     description: 'Deep dive into generative models, LLMs, and prompt engineering principles offered by Google Cloud.',
     icon: Award,
-    color: 'from-red-500 to-yellow-400',
-    badgeColor: 'bg-red-500/10 border-red-500/20 text-red-400',
+    color: 'from-purple-500 to-indigo-600',
+    badgeColor: 'bg-purple-50 border-purple-100 text-purple-700',
   },
   {
     title: 'Fundamentals of Machine Learning',
@@ -26,8 +26,8 @@ const certifications = [
     issuerLogo: '🟦',
     description: 'Foundational concepts of machine learning, model training, and evaluation using Azure Machine Learning.',
     icon: CheckCircle,
-    color: 'from-blue-600 to-blue-400',
-    badgeColor: 'bg-sky-500/10 border-sky-500/20 text-sky-400',
+    color: 'from-sky-500 to-blue-600',
+    badgeColor: 'bg-sky-50 border-sky-100 text-sky-700',
   },
 ];
 
@@ -54,19 +54,15 @@ const CertificationsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="certifications" className="relative py-20 md:py-32 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-secondary/5 rounded-full blur-3xl" />
-
+    <section ref={sectionRef} id="certifications" className="relative py-20 md:py-32 bg-white overflow-hidden border-b border-slate-100">
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-3">Credentials</p>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">
-            Certifications & <span className="gradient-text">Achievements</span>
+          <p className="text-xs font-bold text-indigo-600 tracking-widest uppercase mb-2">Credentials</p>
+          <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">
+            Certifications & <span className="gradient-text-blue">Achievements</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-slate-600 max-w-2xl mx-auto">
             Professional credentials and technical milestones from industry-leading platforms
           </p>
         </div>
@@ -79,10 +75,7 @@ const CertificationsSection = () => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="h-full relative group">
-                {/* Glow effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-500 rounded-2xl`} />
-
-                <div className="h-full relative bg-card border border-primary/10 hover:border-primary/30 rounded-2xl p-6 transition-all duration-300 flex flex-col">
+                <div className="h-full relative bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-indigo-200 transition-all duration-300 flex flex-col">
                   {/* Issuer badge */}
                   <div className="flex items-center justify-between mb-5">
                     <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${cert.badgeColor}`}>
@@ -92,20 +85,17 @@ const CertificationsSection = () => {
                   </div>
 
                   {/* Icon */}
-                  <div className={`mb-5 w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${cert.color} shadow-lg`}>
+                  <div className={`mb-4 w-12 h-12 rounded-2xl flex items-center justify-center bg-gradient-to-br ${cert.color} text-white shadow-md`}>
                     <cert.icon className="h-6 w-6 text-white" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="font-heading text-lg font-bold mb-3 group-hover:text-primary transition-colors leading-snug">
+                  <h3 className="font-heading text-lg font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors leading-snug">
                     {cert.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
+                  <p className="text-slate-600 text-sm leading-relaxed flex-grow">
                     {cert.description}
                   </p>
-
-                  {/* Decorative corner */}
-                  <div className={`absolute top-0 right-0 w-14 h-14 bg-gradient-to-bl ${cert.color} opacity-8 rounded-bl-full rounded-tr-2xl`} />
                 </div>
               </div>
             </div>

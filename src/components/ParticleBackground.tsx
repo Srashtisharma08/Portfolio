@@ -22,7 +22,7 @@ const ParticleBackground = () => {
 
     let animationId: number;
     const particles: Particle[] = [];
-    const particleCount = 50;
+    const particleCount = 40;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -33,10 +33,10 @@ const ParticleBackground = () => {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       size: Math.random() * 2 + 1,
-      speedX: (Math.random() - 0.5) * 0.5,
-      speedY: (Math.random() - 0.5) * 0.5,
-      opacity: Math.random() * 0.5 + 0.2,
-      hue: Math.random() > 0.5 ? 270 : 186, // Purple or cyan
+      speedX: (Math.random() - 0.5) * 0.4,
+      speedY: (Math.random() - 0.5) * 0.4,
+      opacity: Math.random() * 0.25 + 0.1,
+      hue: Math.random() > 0.5 ? 239 : 262, // Indigo or purple
     });
 
     const initParticles = () => {
@@ -49,19 +49,14 @@ const ParticleBackground = () => {
     const drawParticle = (particle: Particle) => {
       ctx.beginPath();
       ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      ctx.fillStyle = `hsla(${particle.hue}, 91%, 65%, ${particle.opacity})`;
+      ctx.fillStyle = `hsla(${particle.hue}, 84%, 63%, ${particle.opacity})`;
       ctx.fill();
-      
-      // Glow effect
-      ctx.shadowBlur = 15;
-      ctx.shadowColor = `hsla(${particle.hue}, 91%, 65%, 0.5)`;
     };
 
     const updateParticle = (particle: Particle) => {
       particle.x += particle.speedX;
       particle.y += particle.speedY;
 
-      // Wrap around edges
       if (particle.x < 0) particle.x = canvas.width;
       if (particle.x > canvas.width) particle.x = 0;
       if (particle.y < 0) particle.y = canvas.height;
@@ -75,9 +70,9 @@ const ParticleBackground = () => {
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
+          if (distance < 140) {
             ctx.beginPath();
-            ctx.strokeStyle = `hsla(270, 91%, 65%, ${0.1 * (1 - distance / 150)})`;
+            ctx.strokeStyle = `hsla(239, 84%, 63%, ${0.08 * (1 - distance / 140)})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -89,7 +84,6 @@ const ParticleBackground = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.shadowBlur = 0;
 
       drawConnections();
 
@@ -120,7 +114,7 @@ const ParticleBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.5 }}
     />
   );
 };
